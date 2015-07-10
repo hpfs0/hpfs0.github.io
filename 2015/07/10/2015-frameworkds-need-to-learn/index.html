@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="lintcode," />
+  <meta name="keywords" content="framwork,前端," />
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-  <title> Lintcode小试牛刀 // MondCare的小屋 </title>
+  <title> 2015年需要了解的前端框架和语言 // MondCare的小屋 </title>
 </head>
 
 <body>
@@ -158,7 +158,7 @@
           
           
             
-              Lintcode小试牛刀
+              2015年需要了解的前端框架和语言
             
           
         </h1>
@@ -166,14 +166,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-05-20
+          发表于 2015-07-10
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/技术/">技术</a>
+              <a href="/categories/前端/">前端</a>
 
               
               
@@ -186,8 +186,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/05/20/first-lintcode/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/20/first-lintcode/"></span>
+            <a href="/2015/07/10/2015-frameworkds-need-to-learn/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/10/2015-frameworkds-need-to-learn/"></span>
             </a>
           </span>
           
@@ -201,22 +201,47 @@
       
 
       
-        <h1 id="什么是Lintcode?">什么是<a href="http://www.lintcode.com/" target="_blank" rel="external">Lintcode</a>?</h1><p>一句话说，LintCode就是专注代码面试的在线评测系统</p>
-<h3 id="初识Lintcode">初识Lintcode</h3><p>闲来无事，看见有人在推特上发有关在线编程相关网站，结果手一抖就点到了lintcode。</p>
-<a id="more"></a>
-<p>进入主页时感觉界面设计得简洁，阅读起来也很舒服。于是乎就开始了注册。。。登录。。。</p>
-<h3 id="A_+_B_=_？">A + B = ？</h3><p>看见这题目的标题时（难度中），以为1分钟之内可以解决。结果做了半个小时。。ORZ！</p>
-<blockquote>
-<p>给出两个整数a和b, 求他们的和, 但不能使用 + 等数学运算符。<br><br><b>样例</b><br><br>如果 <code>a=1</code> 并且 <code>b=2</code>，返回<code>3</code><br><br><b>注意</b><br><br>你不需要从输入流读入数据，只需要根据<code>aplusb</code>的两个参数a和b，计算他们的和并返回就行。<br><br><b>挑战</b><br><br>显然你可以直接 <code>return a + b</code>，但是你是否可以挑战一下不这样做？<br><br><b>说明</b><br><br>a和b都是 32位 整数么？</p>
-<blockquote>
-<ul>
-<li>是的<br>我可以使用位运算符么？</li>
-<li>当然可以</li>
-</ul>
-</blockquote>
-</blockquote>
-<h3 id="Answer">Answer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * param a: The first integer</span><br><span class="line">     * param b: The second integer</span><br><span class="line">     * return: The sum of a and b</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">aplusb</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write your code here, try to do it without arithmetic operators.</span></span><br><span class="line">        <span class="keyword">return</span> b != <span class="number">0</span> ? aplusb(a ^ b, (a &amp; b) &lt;&lt; <span class="number">1</span>) : a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="总结">总结</h3><p>所有的计算机都是基于二进制的运算，这题帮我复习了很久没使用的位运算。</p>
+        <h3 id="语言/平台">语言/平台</h3><hr>
+<p><img src="/images/2015-frameworkds-need-to-learn/1.png" alt=""></p>
+<p><br> </p>
+<a id="more"></a>   
+<p>Node.js第一，PHT第二，JavaScript第三。因为Node.js的社区很多，所以这个结果你也不用太意外。如果你知道JavaScript,你已经一只脚踏进了用Node.js来构建Web APP的可能。</p>
+<p><br></p>
+<h3 id="框架">框架</h3><hr>
+<p><img src="/images/2015-frameworkds-need-to-learn/2.png" alt=""></p>
+<p><br></p>
+<p>AngularJS处于框架的领导地位。大量的公司和企业已经采用Angular,这就要求开发者更多的具备使用这个框架的技能。主要还是因为有Google里最好的工程师支持。</p>
+<p><br></p>
+<h3 id="2015你应该学习的">2015你应该学习的</h3><hr>
+<p>很多的库和框架产生和消亡，对于把有限的精力投入到最有价值的事情上是有挑战的。下面是我们的一些关于语言和框架的建议，这些都是我们认为很有意义去学习的。它们都很流行，有活跃的社区，并且有大量的就业机会。</p>
+<p><br></p>
+<p>1.　无所不在的JavaScript</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/3.jpg" alt=""></p>
+<p>如果你做web的开发，Javascript是你必须知道的，不管你写后台用的何种语言。现在你可以用JS在浏览器、服务器、手机应用甚至是可编程的硬件。ES6 将会提高并让这个语言更加强大。学习Bower 和npm工具是很有必要的，也包括jshint 和 jscs这种代码样式和代码检测。</p>
+<p>2.　AngularJS</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/4.jpg" alt=""></p>
+<p><a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>是一个Google发明的JavaScript框架，它能快速的构建企业级的web应用。快速的需求增长要求程序员有这个框架的使用经验，很多时候，你会看到招聘工作的时候会涉及这个框架的使用。但是别太着急。它将会有一个大的重写，在它的2.0版本发布后再学习是个更好的方式。可以查看学习指南<a href="http://tutorialzine.com/2013/08/learn-angularjs-5-examples/" target="_blank" rel="external">angularjs examples</a>.</p>
+<p>3.　React</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/5.jpg" alt=""></p>
+<p><a href="http://facebook.github.io/react/" target="_blank" rel="external">React</a>是新的竞争者，但它是可提供复用的web组件。这个库是Facebook开发并实现了非常快的虚拟DOM，并能很简单的接入到现有项目中去。它也有非常活跃的社区来提供开发组件<a href="http://react-components.com/" target="_blank" rel="external">all kinds of components</a>.在我们看来，Reacts是非常有潜力的并值得在2015年关注的。查看我们的学习指南<a href="http://tutorialzine.com/2014/07/5-practical-examples-for-learning-facebooks-react-framework/" target="_blank" rel="external">react tutorial</a>.</p>
+<p>4.　Node.js</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/6.jpg" alt=""></p>
+<p>用Node.js你可以用JavaScript来实现服务端的应用。它可以很简单的实现后台，像这些框架<a href="http://expressjs.com/" target="_blank" rel="external">Express</a>, <a href="https://github.com/restify/node-restify" target="_blank" rel="external">API endpoints</a>, <a href="http://socket.io/" target="_blank" rel="external">websocket</a>甚至<a href="https://github.com/mafintosh/peerflix" target="_blank" rel="external">torrent clients</a>. Node有令人难以置信的活跃的社区超越任何其他一种语言在这一年实现的模块。如果你是个初学者，我们推荐你尝试下<a href="http://nodeschool.io/" target="_blank" rel="external">NodeSchool</a>.</p>
+<p>5.　NoSQL databases</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/7.jpg" alt=""></p>
+<p>既不是关系型也不是SQL查询型的数据库是对今天的web开发者更有价值的，我们相信这样的数据库将会在未来更加的流行。有两个值得关注的是<a href="http://en.wikipedia.org/wiki/MongoDB" target="_blank" rel="external">Mongodb</a> and <a href="http://redis.io/" target="_blank" rel="external">Redis</a>.很容易使用它们中得任意一个比起MySQL和Postgres.但是别傻傻的认为NoSQL数据库就是完美的取代—有的情况，那些经典的关系型数据库还是会让你的开发更简单。</p>
+<p>6.　Less/Sass/Stylus</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/8.jpg" alt=""></p>
+<p>有很多人不喜欢CSS.它很容易就达到了1000行的css文件并且不容易被定位和修改。为了解决这些问题，有些语言像<a href="http://lesscss.org/" target="_blank" rel="external">Less</a>, <a href="http://sass-lang.com/" target="_blank" rel="external">Sass</a> and <a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a>可以编译成CSS文件，并可以使用变量、宏和其它的方式来提高你的编码。你可以一下午就搞定它们中的一种。</p>
+<p>7.　令人兴奋的框架</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/9.jpg" alt=""></p>
+<p><a href="https://www.meteor.com/" target="_blank" rel="external">Meteor</a>是一个全新的web应用开发方式，它模糊了前端和后端的边界。它允许你书写实施的应用，并且有迅速成长的社区来提供各种包模块。<a href="http://hood.ie/" target="_blank" rel="external">Hood.ie</a> 是一个小得竞争者，但是提供新颖的方式。它能为你处理后台，所以你可以集中精力来做你应用的前台。</p>
+<p>8.　令人兴奋的语言</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/10.jpg" alt=""></p>
+<p>对于一些编程语言迷来说，这又一些东西。<a href="https://golang.org/" target="_blank" rel="external">Golang</a>, <a href="http://www.rust-lang.org/" target="_blank" rel="external">Rust</a> and <a href="http://elixir-lang.org/" target="_blank" rel="external">Elixir</a>增长的势头很强，被用在一些对性能要求很高的情况下。我们不推荐转移你的编程方向到这些语言中，但是你可能会在要求与其它的网站交互时会用到。</p>
+<p>9.　经典的全栈式框架</p>
+<p><img src="/images/2015-frameworkds-need-to-learn/11.jpg" alt=""></p>
+<p>尽管那些单页面应用增长迅速，但还是有大量的使用服务端的web应用。<a href="http://rubyonrails.org/" target="_blank" rel="external">on Rails</a>, <a href="https://www.djangoproject.com/" target="_blank" rel="external">Django</a>, <a href="http://laravel.com/" target="_blank" rel="external">Laravel</a>, <a href="https://www.playframework.com/" target="_blank" rel="external">Play</a>, <a href="http://www.asp.net/" target="_blank" rel="external">ASP.NET</a>是这排名靠前的几个框架。花点时间学习任何的MVC框架都会让你获益良多。</p>
 
       
     </div>
@@ -225,7 +250,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/lintcode/"> #lintcode </a>
+            <a href="/tags/framwork/"> #framwork </a>
+          
+            <a href="/tags/前端/"> #前端 </a>
           
         </div>
       
@@ -234,11 +261,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/20/all-vim-cheatsheat/">【转】史上最全Vim快捷键键位图 -- 入门到进阶</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/25/linux-tcp-improve/">高流量大并发Linux TCP 性能调优</a>
             
           </div>
         </div>
@@ -281,8 +308,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/05/20/first-lintcode/"
-               data-title="Lintcode小试牛刀" data-url="http://mondcare.ml/2015/05/20/first-lintcode/">
+          <div class="ds-thread" data-thread-key="2015/07/10/2015-frameworkds-need-to-learn/"
+               data-title="2015年需要了解的前端框架和语言" data-url="http://mondcare.ml/2015/07/10/2015-frameworkds-need-to-learn/">
           </div>
         
       </div>
@@ -392,7 +419,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Lintcode?"><span class="nav-number">1.</span> <span class="nav-text">什么是Lintcode?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初识Lintcode"><span class="nav-number">1.0.1.</span> <span class="nav-text">初识Lintcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A_+_B_=_？"><span class="nav-number">1.0.2.</span> <span class="nav-text">A + B = ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer"><span class="nav-number">1.0.3.</span> <span class="nav-text">Answer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#语言/平台"><span class="nav-number">1.</span> <span class="nav-text">语言/平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2015你应该学习的"><span class="nav-number">3.</span> <span class="nav-text">2015你应该学习的</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
