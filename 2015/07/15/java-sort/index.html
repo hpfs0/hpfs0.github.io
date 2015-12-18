@@ -1,25 +1,38 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
 
 
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.3" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="java,排序,算法," />
@@ -28,27 +41,89 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+<meta name="description" content="本文由网络资料整理而来，如有问题，欢迎指正！
+分类：
+
+插入排序（直接插入排序、希尔排序）
+交换排序（冒泡排序、快速排序）
+选择排序（直接选择排序、堆排序）
+归并排序
+分配排序（基数排序）
+
+所需辅助空间最多：归并排序
+所需辅助空间最少：堆排序
+平均速度最快：快速排序
+不稳定：快速排序，希尔排序，堆排序。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java常用排序算法/程序员必须掌握的8大排序算法">
+<meta property="og:url" content="http://mondcare.ml/2015/07/15/java-sort/index.html">
+<meta property="og:site_name" content="MondCare的小屋">
+<meta property="og:description" content="本文由网络资料整理而来，如有问题，欢迎指正！
+分类：
+
+插入排序（直接插入排序、希尔排序）
+交换排序（冒泡排序、快速排序）
+选择排序（直接选择排序、堆排序）
+归并排序
+分配排序（基数排序）
+
+所需辅助空间最多：归并排序
+所需辅助空间最少：堆排序
+平均速度最快：快速排序
+不稳定：快速排序，希尔排序，堆排序。">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/1.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/2.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/3.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/4.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/5.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/6.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/7.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/8.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/9.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/10.jpg">
+<meta property="og:image" content="http://mondcare.ml/images/java-sort/11.jpg">
+<meta property="og:updated_time" content="2015-07-15T06:03:01.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java常用排序算法/程序员必须掌握的8大排序算法">
+<meta name="twitter:description" content="本文由网络资料整理而来，如有问题，欢迎指正！
+分类：
+
+插入排序（直接插入排序、希尔排序）
+交换排序（冒泡排序、快速排序）
+选择排序（直接选择排序、堆排序）
+归并排序
+分配排序（基数排序）
+
+所需辅助空间最多：归并排序
+所需辅助空间最少：堆排序
+平均速度最快：快速排序
+不稳定：快速排序，希尔排序，堆排序。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
-    sidebar: 'always'
+    sidebar: 'post',
+    motion: true
   };
 </script>
 
-
-
-
-  <title> Java常用排序算法/程序员必须掌握的8大排序算法 // MondCare的小屋 </title>
+  <title> Java常用排序算法/程序员必须掌握的8大排序算法 | MondCare的小屋 </title>
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   <!--[if lte IE 8]>
   <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
     <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -58,22 +133,29 @@
     </a>
   </div>
 <![endif]-->
+  
+
+
+
+
+
 
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">MondCare的小屋</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -83,7 +165,7 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
@@ -91,43 +173,56 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
           </a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories">
-            <i class="menu-item-icon icon-categories"></i> <br />
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
             分类
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
             关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
           </a>
         </li>
+      
+
+      
       
     </ul>
   
@@ -136,9 +231,11 @@
     <div class="site-search">
       
   
-<form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -146,23 +243,18 @@
   })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
   _st('install', 'oLimuNZJZFps2-CAwJhF','2.0.0');
-
-  window.onload=function(){ 
-     var search = document.getElementById("st-search-input");
-     
-  }
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
+ </div>
+    </header>
 
-      </div>
-    </div>
-
-    <div id="main" class="main">
+    <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content">
           
@@ -170,51 +262,72 @@
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              Java常用排序算法/程序员必须掌握的8大排序算法
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-15
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/技术/">技术</a>
+            
+              
+                Java常用排序算法/程序员必须掌握的8大排序算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-07-15T20:45:00+09:00" content="2015-07-15">
+              2015-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/15/java-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/15/java-sort/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/15/java-sort/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/15/java-sort/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
+
+        </div>
+      </header>
+    
+
 
     <div class="post-body">
 
@@ -222,7 +335,7 @@
       
 
       
-        <p><em><font style="color:red">本文由网络资料整理而来，如有问题，欢迎指正！</font></em></p>
+        <span itemprop="articleBody"><p><em><font style="color:red">本文由网络资料整理而来，如有问题，欢迎指正！</font></em></p>
 <p>分类：</p>
 <ol>
 <li>插入排序（直接插入排序、希尔排序）</li>
@@ -267,34 +380,38 @@
 <h3 id="8-_基数排序">8. 基数排序</h3><p>（1）基本思想：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后,数列就变成一个有序序列。</p>
 <p>（2）实例：<br><img src="/images/java-sort/11.jpg" alt=""></p>
 <p>（3）用java实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">radixSort</span> </span>&#123;</span><br><span class="line">    inta[] = &#123;</span><br><span class="line">        <span class="number">49</span>, <span class="number">38</span>, <span class="number">65</span>, <span class="number">97</span>, <span class="number">76</span>, <span class="number">13</span>, <span class="number">27</span>, <span class="number">49</span>, <span class="number">78</span>, <span class="number">34</span>, <span class="number">12</span>, <span class="number">64</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">62</span>, <span class="number">99</span>, <span class="number">98</span>, <span class="number">54</span>, <span class="number">101</span>, <span class="number">56</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">23</span>, <span class="number">34</span>, <span class="number">15</span>, <span class="number">35</span>, <span class="number">25</span>, <span class="number">53</span>, <span class="number">51</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">radixSort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sort(a);</span><br><span class="line">        <span class="keyword">for</span> (inti = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">            System.out.println(a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//首先确定排序的趟数;    </span></span><br><span class="line">        <span class="keyword">int</span> max = array[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (inti = <span class="number">1</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[i] &gt; max) &#123;</span><br><span class="line">                max = array[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> time = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//判断位数;    </span></span><br><span class="line">        <span class="keyword">while</span> (max &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            max /= <span class="number">10</span>;</span><br><span class="line">            time++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//建立10个队列;    </span></span><br><span class="line">        List &lt; ArrayList &gt; queue = newArrayList &lt; ArrayList &gt; ();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            ArrayList &lt; Integer &gt; queue1 = <span class="keyword">new</span> ArrayList &lt; Integer &gt; ();</span><br><span class="line">            queue.add(queue1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//进行time次分配和收集;    </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; time; i++) &#123;</span><br><span class="line">            <span class="comment">//分配数组元素;    </span></span><br><span class="line">            <span class="keyword">for</span> (intj = <span class="number">0</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">                <span class="comment">//得到数字的第time+1位数;  </span></span><br><span class="line">                <span class="keyword">int</span> x = array[j] % (<span class="keyword">int</span>) Math.pow(<span class="number">10</span>, i + <span class="number">1</span>) / (<span class="keyword">int</span>) Math.pow(<span class="number">10</span>, i);</span><br><span class="line">                ArrayList &lt; Integer &gt; queue2 = queue.get(x);</span><br><span class="line">                queue2.add(array[j]);</span><br><span class="line">                queue.set(x, queue2);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//元素计数器;    </span></span><br><span class="line">            <span class="comment">//收集队列元素;    </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</span><br><span class="line">                <span class="keyword">while</span> (queue.get(k).size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    ArrayList &lt; Integer &gt; queue3 = queue.get(k);</span><br><span class="line">                    array[count] = queue3.get(<span class="number">0</span>);</span><br><span class="line">                    queue3.remove(<span class="number">0</span>);</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+</span>
       
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/java/"> #java </a>
+            <a href="/tags/java/" rel="tag">#java</a>
           
-            <a href="/tags/排序/"> #排序 </a>
+            <a href="/tags/排序/" rel="tag">#排序</a>
           
-            <a href="/tags/算法/"> #算法 </a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/17/android-view-move/">Android — View移动的六种方法</a>
+              <a href="/2015/07/10/2015-frameworkds-need-to-learn/" rel="next" title="2015年需要了解的前端框架和语言">
+                <i class="fa fa-chevron-left"></i> 2015年需要了解的前端框架和语言
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/10/2015-frameworkds-need-to-learn/">2015年需要了解的前端框架和语言</a>
+              <a href="/2015/12/17/android-view-move/" rel="prev" title="Android — View移动的六种方法">
+                Android — View移动的六种方法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -302,8 +419,8 @@
 
       
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
 
@@ -333,26 +450,28 @@
 
       
     </div>
-
-    
-      <div class="comments" id="comments">
-        
-          <div class="ds-thread" data-thread-key="2015/07/15/java-sort/"
-               data-title="Java常用排序算法/程序员必须掌握的8大排序算法" data-url="http://mondcare.ml/2015/07/15/java-sort/">
-          </div>
-        
-      </div>
-    
   </div>
 
 
         </div>
 
         
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/15/java-sort/"
+           data-title="Java常用排序算法/程序员必须掌握的8大排序算法" data-url="http://mondcare.ml/2015/07/15/java-sort/">
+      </div>
+    
+  </div>
+
+
       </div>
 
-
       
+        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -362,12 +481,14 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -376,13 +497,13 @@
         </ul>
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="hpfs0" />
-          <p class="site-author-name">hpfs0</p>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="hpfs0" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">hpfs0</p>
         </div>
-        <p class="site-description motion-element"></p>
-        <div class="site-state motion-element">
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
@@ -404,7 +525,7 @@
               </a>
           </div>
 
-        </div>
+        </nav>
 
         
 
@@ -412,16 +533,28 @@
           
             
               <span class="links-of-author-item">
-              <a href="https://github.com/hpfs0" target="_blank">GitHub</a>
-            </span>
+                <a href="https://github.com/hpfs0" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/ydw84312430" target="_blank">Twitter</a>
-            </span>
+                <a href="https://twitter.com/ydw84312430" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://plus.google.com/u/0/108498107934590455610/posts" target="_blank">Google</a>
-            </span>
+                <a href="https://plus.google.com/u/0/108498107934590455610/posts" target="_blank">
+                  
+                    <i class="fa fa-google"></i> Google
+                  
+                </a>
+              </span>
             
           
         </div>
@@ -434,43 +567,50 @@
             <p class="site-author-name">友情链接</p>
             
               <span class="links-of-author-item">
-              <a href="http://www.honker.org/" target="_blank">独狼网络博客</a>
+                <a href="http://www.honker.org/" target="_blank">独狼网络博客</a>
               </span>
             
           
         </div>
-        
-      </div>
+
+      </section>
 
       
-        <div class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
           <div class="post-toc">
+            
+              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先来看看8种排序之间的关系："><span class="nav-number">1.</span> <span class="nav-text">先来看看8种排序之间的关系：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_直接插入排序"><span class="nav-number">1.1.</span> <span class="nav-text">1. 直接插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_希尔排序（最小增量排序）"><span class="nav-number">1.2.</span> <span class="nav-text">2. 希尔排序（最小增量排序）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_简单选择排序"><span class="nav-number">1.3.</span> <span class="nav-text">3. 简单选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_堆排序"><span class="nav-number">1.4.</span> <span class="nav-text">4. 堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_冒泡排序"><span class="nav-number">1.5.</span> <span class="nav-text">5. 冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_快速排序"><span class="nav-number">1.6.</span> <span class="nav-text">6. 快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_归并排序"><span class="nav-number">1.7.</span> <span class="nav-text">7. 归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-_基数排序"><span class="nav-number">1.8.</span> <span class="nav-text">8. 基数排序</span></a></li></ol></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+      
+    </main>
 
-    <div id="footer" class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
-  2015
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="icon-next-heart fa fa-heart"></i>
   </span>
-  <span class="author">hpfs0</span>
+  <span class="author" itemprop="copyrightHolder">hpfs0</span>
 </div>
 
 <div class="powered-by">
@@ -487,7 +627,7 @@
 
 
       </div>
-    </div>
+    </footer>
 
     <div class="back-to-top"></div>
   </div>
@@ -498,21 +638,43 @@
   
 
   
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mondcare"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+
+    
+  
+
+  
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+<script type="text/javascript" src="/js/motion.js?v=0.4.3" id="motion.global"></script>
 
 
-
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -549,7 +711,6 @@
     }
 
     function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
       var height = $('.sidebar').height() -
                    $tocSelector.position().top -
                    $('.post-toc-indicator-bottom').height();
@@ -571,7 +732,7 @@
       )
     }
 
-    $(document).on('sidebar.didShow', function () {
+    $(document).on('sidebar.motion.complete', function () {
       processTOC();
     });
 
@@ -588,7 +749,6 @@
       element.on('mousewheel DOMMouseScroll', function (event) {
           var oe = event.originalEvent;
           var delta = oe.wheelDelta || -oe.detail;
-          var self = this;
 
           this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
           event.preventDefault();
@@ -598,108 +758,94 @@
     }
 
     function tocOverflowIndicator (indicator, action) {
-      $(indicator).velocity('stop').velocity({
-        opacity: action === 'show' ? 0.4 : 0
-      }, { duration: 100 });
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
     }
 
   });
 </script>
 
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
 
-  <script type="text/javascript" id="sidebar.nav">
-    $(document).ready(function () {
-      var html = $('html');
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
 
-      $('.sidebar-nav li').on('click', function () {
-        var item = $(this);
-        var activeTabClassName = 'sidebar-nav-active';
-        var activePanelClassName = 'sidebar-panel-active';
-        if (item.hasClass(activeTabClassName)) {
-          return;
-        }
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
 
-        var currentTarget = $('.' + activePanelClassName);
-        var target = $('.' + item.data('target'));
-
-        currentTarget.velocity('transition.slideUpOut', 200, function () {
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
           target
             .velocity('stop')
-            .velocity('transition.slideDownIn', 200)
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
             .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
         });
 
-        item.siblings().removeClass(activeTabClassName);
-        item.addClass(activeTabClassName);
-      });
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
 
-      $('.post-toc a').on('click', function (e) {
-        e.preventDefault();
-        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
         html.velocity('stop').velocity('scroll', {
           offset: offset  + 'px',
           mobileHA: false
-        });
-      });
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
 
-      // Expand sidebar on post detail page by default, when post has a toc.
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
       var $tocContent = $('.post-toc-content');
-      if (isDesktop() && CONFIG.sidebar === 'post') {
+      if (CONFIG.sidebar === 'post') {
         if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
           displaySidebar();
         }
       }
-    });
-  </script>
+    };
+  });
+</script>
 
 
 
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
-
-  
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
 
   
-    
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mondcare"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-
-
-  
-  
-
-  
-  <!-- lazyload -->
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-      <script type="text/javascript">
-        jQuery(function() {          
-            jQuery("#posts img").lazyload({
-              placeholder:"http://www.arao.me/loading.gif",  
-                effect:"fadeIn"
-              });
-            });
-    </script>   
 </body>
 </html>
