@@ -1,0 +1,858 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android,压缩,移动," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="7.3M（Debug版本）和6.5M（Release版本）
+开启minifyEnabled
+开启shrinkResources
+已经去除不相关的大型库
+图片和代码已经经历过粗略的一轮清理
+
+开始魔鬼瘦身1. tinypng有损压缩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】APK瘦身实践">
+<meta property="og:url" content="http://mondcare.ml/2016/01/26/apk-compress/index.html">
+<meta property="og:site_name" content="MondCare的小屋">
+<meta property="og:description" content="7.3M（Debug版本）和6.5M（Release版本）
+开启minifyEnabled
+开启shrinkResources
+已经去除不相关的大型库
+图片和代码已经经历过粗略的一轮清理
+
+开始魔鬼瘦身1. tinypng有损压缩">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/1.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/2.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/3.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/4.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/5.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/6.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/7.png">
+<meta property="og:image" content="http://mondcare.ml/images/apk-compress/8.png">
+<meta property="og:updated_time" content="2016-01-26T03:36:52.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】APK瘦身实践">
+<meta name="twitter:description" content="7.3M（Debug版本）和6.5M（Release版本）
+开启minifyEnabled
+开启shrinkResources
+已经去除不相关的大型库
+图片和代码已经经历过粗略的一轮清理
+
+开始魔鬼瘦身1. tinypng有损压缩">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 【转】APK瘦身实践 | MondCare的小屋 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MondCare的小屋</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'oLimuNZJZFps2-CAwJhF','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【转】APK瘦身实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-26T19:45:00+09:00" content="2016-01-26">
+              2016-01-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/26/apk-compress/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/26/apk-compress/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><ul>
+<li>7.3M（Debug版本）和6.5M（Release版本）</li>
+<li>开启minifyEnabled</li>
+<li>开启shrinkResources</li>
+<li>已经去除不相关的大型库</li>
+<li>图片和代码已经经历过粗略的一轮清理</li>
+</ul>
+<h1 id="开始魔鬼瘦身">开始魔鬼瘦身</h1><h3 id="1-_tinypng有损压缩">1. tinypng有损压缩</h3><a id="more"></a>
+<p>android打包本身会对png进行无损压缩，不信大家可以看看apk中的图片的大小实际上比你代码工程里的图片要小（针对没进行过无损压缩的那些png图）。<br>所以，纯粹的进行无损压缩并不会对apk的减小有任何效果，这是我特别想在这里强调的一个经验。<br>现在大家主流的比较喜欢用的tinypng其实是有损压缩：</p>
+<blockquote>
+<p><a href="https://tinypng.com/" target="_blank" rel="external">https://tinypng.com/</a><br>[原文] TinyPNG uses smart lossy compression techniques to reduce the file size of your PNG files…<br>[翻译] TinyPNG使用智能有损压缩技术，来减少PNG文件的大小…</p>
+</blockquote>
+<p>通过tinypng确实能在尽量少的损失下再减小apk，如果图片资源多或者大的话，效果还是很明显的。<br>具体减少多少，因为这个处理过程我们是间隔做的，无法准确给出结果，就按200k～500k算吧。</p>
+<h3 id="2-_png换成jpg">2. png换成jpg</h3><p>经验发现，一些背景，启动页，宣传页的PNG图片比较大，这些图片图形比较复杂，如果转用有损JPG可能只有不到一半（当然是有损，不过通过设置压缩参数可以这种损失比较小到忽略）。<br>因为都是大图，所以这种方式能有效减小apk的大小。<br>这种情况下的apk的减小是不可估量的。</p>
+<h3 id="3-_jpg换成webp">3. jpg换成webp</h3><p>如果png大图转成jpg还是很大，或者想压的更小，而尽量不降低画质，那么可以考虑一下webp。</p>
+<blockquote>
+<p>android 4.0+才原生支持webp, 但是我们的app是兼容2.3+，所以4.0以下的设备将无法看到图片。<br>考虑到我们4.0以下的所有设备比例之和大约在0.44%，非常少<br>4.0以下的设备不会崩溃<br>我们选择不对4.0以下做webp兼容处理，不显示就不显示。否则，要引入webp相关so文件增大apk大小。</p>
+</blockquote>
+<p>通过把下面四张大图换成webp，webp的quality参数按50配置(据说官方评测75是最佳值)，清晰度勉强可以接受，这个值大家具体按产品要求来定。</p>
+<p><img src="/images/apk-compress/1.png" alt=""></p>
+<p>其中安装jpg转webp工具:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>install webp</span><br></pre></td></tr></table></figure>
+<p>转换命令如下</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cwebp -<span class="tag">q</span> &lt;quality&gt; <span class="tag">input</span><span class="class">.jpg</span> output<span class="class">.webp</span></span><br><span class="line"><span class="comment">// Example:</span></span><br><span class="line">cwebp -<span class="tag">q</span> <span class="number">50</span> <span class="tag">a</span><span class="class">.jpg</span> <span class="tag">a</span>.webp</span><br></pre></td></tr></table></figure>
+<p>更多下载：<a href="https://developers.google.com/speed/webp/docs/precompiled" target="_blank" rel="external">https://developers.google.com/speed/webp/docs/precompiled</a></p>
+<p>最终，apk减小了188k。</p>
+<h3 id="4-_大图缩小">4. 大图缩小</h3><p>如果经过上面的步骤，依然存在大图的话，说明确实图有点大了，可能真的有点大了！<br>所以，要考虑的问题是，是否有必要保证如此的大小？能否缩小？<br>如果这方面能减小的话，apk瘦身的效果必然又会上一个档次。<br>这种情况下的apk的减小是不可估量的。</p>
+<h3 id="5-_覆盖aar里的一些默认的大图">5. 覆盖aar里的一些默认的大图</h3><p>一些aar库里面包含根本就没有用的图。最典型的是support-v4兼容库中包含一些“可能”用到的图片，实际上在你的app中不会用到。</p>
+<p><img src="/images/apk-compress/2.png" alt=""></p>
+<p>我没有把所有图都替换掉，只是把几张大一点点的图（选中的那些图）用1x1的图片替换，如果9patch图的话，要做成3x3的9patch图替换。<br>support库可能还算好的，就怕有些库引用了一些大图而不自知，可以在/build/intermediates/exploded-aar/下的各个aar库的res目录查找检验。<br>apk减小了18k。</p>
+<h3 id="6-_删除armable-v7包的so">6. 删除armable-v7包的so</h3><p>感谢@杨辉__ ,@kymjs张涛的提醒，armable-v7和armable文件夹可以只保留armable。<br>当然，armable-v7a的库会对图形渲染方面有很大的改进，因为我们主要是一些业务上动态库，所以删掉无大碍。</p>
+<p><img src="/images/apk-compress/3.png" alt=""><br>apk减小了191k。</p>
+<h3 id="7-_微信资源压缩打包">7. 微信资源压缩打包</h3><p>这个方案网上一直在说，之前一直没有需求或者动力实践，在这里感谢一下@裸奔的凯子哥的推荐和交流，他那边的apk可以压小1M，效果还是比较惊人的。<br>这个步骤我是在后面很多步压缩之后测试的，每个阶段的压缩结果都会有些许出入，所以数据仅供参考。</p>
+<p><img src="/images/apk-compress/4.png" alt=""></p>
+<p>通过正常压缩，apk包减小了464k。<br>如果开启7zip，apk包减小了594k。<br>apk减小了594k。</p>
+<p>PS: 关于这个压缩，我集成到了gradle脚本中了，新建了一个Task，大概代码如下：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">task compressReleaseApp &#123;</span><br><span class="line">    // 在现有release的版本上生成到compressed目录下</span><br><span class="line">    def <span class="variable">appid =</span> <span class="string">"appid"</span></span><br><span class="line">    def <span class="variable">channel =</span> <span class="string">"abcdefghijkl"</span></span><br><span class="line">    def <span class="variable">guardJarFile =</span> file('../AndResGuard/andresguard-<span class="number">1.1</span>.jar')</span><br><span class="line">    def <span class="variable">guardConfigFile =</span> file('../AndResGuard/config.xml')</span><br><span class="line">    def <span class="variable">originApkFile =</span> file(<span class="string">"../app.<span class="subst">$&#123;appid&#125;</span>/build/outputs/apk/release/<span class="subst">$&#123;appid&#125;</span>-release-<span class="subst">$&#123;rootProject.ext.versionName&#125;</span>-<span class="subst">$&#123;rootProject.ext.versionCode&#125;</span>-<span class="subst">$&#123;channel&#125;</span>.apk"</span>)</span><br><span class="line">    def <span class="variable">outputDir =</span> file(<span class="string">"../app.<span class="subst">$&#123;appid&#125;</span>/build/outputs/apk/compressed/"</span>)</span><br><span class="line">    def <span class="variable">keystoreFile =</span> file(RELEASE_STORE_FILE)</span><br><span class="line">    // 开始执行压缩命令</span><br><span class="line">    def <span class="variable">proc =</span> <span class="string">"java -jar <span class="subst">$&#123;guardJarFile&#125;</span> <span class="subst">$&#123;originApkFile&#125;</span> -config <span class="subst">$&#123;guardConfigFile&#125;</span> -out <span class="subst">$&#123;outputDir&#125;</span> -signature <span class="subst">$&#123;keystoreFile&#125;</span> <span class="subst">$&#123;RELEASE_STORE_PASSWORD&#125;</span> <span class="subst">$&#123;RELEASE_KEY_PASSWORD&#125;</span> <span class="subst">$&#123;RELEASE_KEY_ALIAS&#125;</span>"</span>.execute();</span><br><span class="line">    proc.waitFor();</span><br><span class="line">    println <span class="string">"return code: <span class="subst">$&#123; proc.exitValue()&#125;</span>"</span> + <span class="string">", stderr: <span class="subst">$&#123;proc.err.text&#125;</span>"</span> + <span class="string">" stdout: <span class="subst">$&#123;proc.<span class="keyword">in</span>.text&#125;</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>config开启了7zip, 部分配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">resproguard</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--defaut property to set  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">issue</span> <span class="attribute">id</span>=<span class="value">"property"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">seventzip</span> <span class="attribute">value</span>= "<span class="attribute">true</span>" /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--  ...  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">issue</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">issue</span> <span class="attribute">id</span>=<span class="value">"whitelist"</span> <span class="attribute">isactive</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">path</span> <span class="attribute">value</span> =<span class="value">"com.xxx.yyy.R.drawable.emoji_*"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">path</span> <span class="attribute">value</span> =<span class="value">"com.xxx.yyy.... /&gt;</span><br><span class="line">    &lt;/issue&gt;</span><br><span class="line"></span><br><span class="line">    &lt;issue id ="</span><span class="value">compress"</span> <span class="attribute">isactive</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--  ...  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">issue</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">resproguard</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>详情参考：<a href="https://github.com/shwenzhang/AndResGuard" target="_blank" rel="external">https://github.com/shwenzhang/AndResGuard</a><br>原理介绍：<br><a href="http://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=208135658&amp;idx=1&amp;sn=ac9bd6b4927e9e82f9fa14e396183a8f#rd" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=208135658&amp;idx=1&amp;sn=ac9bd6b4927e9e82f9fa14e396183a8f#rd</a></p>
+<h3 id="8-_proguard深度混淆代码">8. proguard深度混淆代码</h3><p>之前为了简单起见，很多包都直接忽略了，现在启动严格模式，把能混淆的都混淆了：</p>
+<p><img src="/images/apk-compress/5.png" alt=""></p>
+<p>采用微信压缩方案最终效果比较：</p>
+<p><img src="/images/apk-compress/6.png" alt=""></p>
+<p>apk减小了215k。</p>
+<p>PS:混淆后，一定要经过严格测试，有时候甚至很难发现错误，比如我开启严格混淆，用了一段时间之后慢慢发现了两个bug，排除了两个包程序才正常。</p>
+<h3 id="9-_深度清理代码和资源">9. 深度清理代码和资源</h3><blockquote>
+<p>新发现或者新引入的无用图片<br>这几张图怎么一样<br>这个类好像没有用<br>没用的类相关的图片也没用<br>有些图片可以用着色方案替换<br>有些图片可以用shape来代替<br>hdpi里的ic_luancher.png好像也可以删掉<br>…</p>
+</blockquote>
+<p>apk减小了66k。</p>
+<h3 id="10-_proguard去符号表">10. proguard去符号表</h3><p>之前为了保留调试信息，我们是在Proguard保留了符号表的：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-keepattributes SourceFile,LineNumberTable</span></span><br></pre></td></tr></table></figure>
+<p>官方渠道我觉得还是尽量保留这个，现在针对推广渠道，只能采用特殊手段，注释这一行。<br>apk减小了230k。<br>ps:以后友盟上看推广渠道的bug要辛苦一点，手动上传mapping.txt了。</p>
+<h3 id="11-_provided关键字">11. provided关键字</h3><p>可以对仅在运行时需要的库设置provided关键字，实际并不被打包：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">provided</span> <span class="string">'com.android.support:support-annotations:22.0.0'</span></span><br></pre></td></tr></table></figure>
+<p>我没有发现这样的场景，如果说有的话，就是support-annotations，但是经过后来的测试验证，support-annotations本来就会在release版本中被minifyEnabled掉，所以对support-annotations设置provided是没有意义的。<br>如果有实际场景，欢迎留言说明，不甚感激。<br>apk没有减小。</p>
+<h3 id="12-_表情包在线化">12. 表情包在线化</h3><p>虽然应用的表情不多，只有50来个，但是如果能把这部分表情放到网上，不仅能有效减小apk大小，还可以方便后期扩展支持：</p>
+<p><img src="/images/apk-compress/7.png" alt=""></p>
+<p>打包成emoji_v1.zip, 大小是202k。<br>现在把emoji_v1.zip放到网上，按需下载后使用，最终对比结果如下：</p>
+<p><img src="/images/apk-compress/8.png" alt=""></p>
+<p>apk减小了193k。</p>
+<h3 id="13-_全版本兼容的着色方案">13. 全版本兼容的着色方案</h3><p>考虑着色方案主要目的是更方便支持多主题，减轻UI工作量，减少工程里一大堆selector文件等，然后才是，顺便的减小一下apk大小。<br>通过着色方案，我们去除了10多张纯色的按下状态图片和对应的xml等等。<br>apk减小了15k。</p>
+<p>PS: 具体实现可以参考 <a href="http://www.race604.com/tint-drawable/" target="_blank" rel="external">http://www.race604.com/tint-drawable/</a> ，而我也把它集成到了我的LessCode库中了：<a href="https://github.com/openproject/LessCode/blob/master/lesscode-core/src/main/java/com/jayfeng/lesscode/core/DrawableLess.java" target="_blank" rel="external">DrawableLess.java</a></p>
+<h3 id="14-_去除重复库">14. 去除重复库</h3><p>发现两个地方：</p>
+<blockquote>
+<p>1.现在发现七牛的SDK引用了android-async-http-1.4.6.jar，虽然不大，只有95.4k，但是感觉完全可以写一个轻量级的jar，控制在10～20k就足够了，具体可以在现有的网络库上实现。<br>2.自己工程使用的是UIL，但是引入的第三方库引用了picasso，两个重复的图片下载库也是完全没用必要的。</p>
+</blockquote>
+<p>现在还没有处理这块，新任务介入，延期优化，敬请期待。</p>
+<h3 id="15-_去除无用库">15. 去除无用库</h3><p>这是一个很基本的点，但是确很容易被人忽视，当你仔细回顾的时候，有一些鸡肋的功能或者库，是几无用处的。不如干脆去掉。<br>比如，在很早的时候，我就把我们app里的sharesdk删除了，因为对于我们的产品定位和推广来看，这毫无意义。<br>这种情况下的apk的减小是不可估量的。</p>
+<h3 id="16-_去除百度统计">16. 去除百度统计</h3><p>这个视具体情况决定。<br>因为我们的APP里面包含友盟和百度两套统计系统，早期老板要求，事实上后面已经很少看这方面的数据，百度统计的数据几乎没用人去看，可以暂时先去除。<br>原本的百度统计的jar有130多k，去除之后的apk的减小会远远没有这么多。<br>apk减小了20k。</p>
+<h3 id="17-_使用更小的库">17. 使用更小的库</h3><p>使用更小的库不应该成为你选择方案的决定性因素，但是可以作为参考因素（freso确实太大了，这个大小也可以成为决定性因素）。<br>图片下载，网络请求，json解析等等的库和它的竞品都有多大，你心里有数吗？<br>以工具库为例，网上有很多工具库，但是往往它们的大小很难控制。</p>
+<blockquote>
+<p>xutils-3.2.6.aar – 843.8k<br>lite-common-1.1.3.jar – 148.1k<br>lesscode-core-0.8.2.aar – 64k<br>…</p>
+</blockquote>
+<p>上面最后一个库LessCode是我自己收集的工具类集合，非常小：LessCode，混淆后只有不到50k大小。<br>不仅提高了开发效率，减少了冗余代码，而且能避免引用一些其他大型的库，有效避免包的增大。<br>比如，我们碰到过这样的一个bug，快速点击按钮多次触发跳转，现在RxJava结合RxBind有这样的一个场景解决方案，如果引入这些库的话必然会增大apk大小，实际上就几行代码，我把这样的解决方案集成到了LessCode，下次别的项目碰到这样的问题不用再犹豫是否要引入一个这么大的库了。<br>这些小的工具库，建议根据自己的经验人手总结一个，不求全，但求精！<br>这种情况下的apk的减小是不可估量的。</p>
+<h3 id="18-_插件化">18. 插件化</h3><p>尴尬的是，我们所呈现的功能大部分都是重要的不可分割的功能，很难从业务上分离出来。<br>今年预计要实践一个轻量级的插件化方案，用别人的也好，自己写也好，希望能解决或者优化一些安装包加载多模块，或者主题切换，或者热修复的问题。<br>这里作为候选方案备用。<br>这种情况下的apk的减小是不可估量的。</p>
+<h3 id="19-_功能业务取舍">19. 功能业务取舍</h3><p>一开始考虑瘦身，领导是允许适当的砍掉一些功能，因为4M的目标我们已经实现了，所以现在还没有到砍功能的地步。<br>这里作为候选方案备用。<br>这种情况下的apk的减小是不可估量的。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+            <a href="/tags/压缩/" rel="tag">#压缩</a>
+          
+            <a href="/tags/移动/" rel="tag">#移动</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/17/android-view-move/" rel="next" title="Android — View移动的六种方法">
+                <i class="fa fa-chevron-left"></i> Android — View移动的六种方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/26/apk-compress/"
+           data-title="【转】APK瘦身实践" data-url="http://mondcare.ml/2016/01/26/apk-compress/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="hpfs0" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">hpfs0</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hpfs0" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ydw84312430" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/108498107934590455610/posts" target="_blank">
+                  
+                    <i class="fa fa-google"></i> Google
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.honker.org/" target="_blank">独狼网络博客</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始魔鬼瘦身"><span class="nav-number">1.</span> <span class="nav-text">开始魔鬼瘦身</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_tinypng有损压缩"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. tinypng有损压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_png换成jpg"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. png换成jpg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_jpg换成webp"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. jpg换成webp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_大图缩小"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 大图缩小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_覆盖aar里的一些默认的大图"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. 覆盖aar里的一些默认的大图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_删除armable-v7包的so"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. 删除armable-v7包的so</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_微信资源压缩打包"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. 微信资源压缩打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-_proguard深度混淆代码"><span class="nav-number">1.0.8.</span> <span class="nav-text">8. proguard深度混淆代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-_深度清理代码和资源"><span class="nav-number">1.0.9.</span> <span class="nav-text">9. 深度清理代码和资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-_proguard去符号表"><span class="nav-number">1.0.10.</span> <span class="nav-text">10. proguard去符号表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-_provided关键字"><span class="nav-number">1.0.11.</span> <span class="nav-text">11. provided关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-_表情包在线化"><span class="nav-number">1.0.12.</span> <span class="nav-text">12. 表情包在线化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-_全版本兼容的着色方案"><span class="nav-number">1.0.13.</span> <span class="nav-text">13. 全版本兼容的着色方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-_去除重复库"><span class="nav-number">1.0.14.</span> <span class="nav-text">14. 去除重复库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-_去除无用库"><span class="nav-number">1.0.15.</span> <span class="nav-text">15. 去除无用库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-_去除百度统计"><span class="nav-number">1.0.16.</span> <span class="nav-text">16. 去除百度统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-_使用更小的库"><span class="nav-number">1.0.17.</span> <span class="nav-text">17. 使用更小的库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-_插件化"><span class="nav-number">1.0.18.</span> <span class="nav-text">18. 插件化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-_功能业务取舍"><span class="nav-number">1.0.19.</span> <span class="nav-text">19. 功能业务取舍</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpfs0</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mondcare"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
